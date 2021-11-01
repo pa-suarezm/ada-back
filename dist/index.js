@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const app_1 = __importDefault(require("./app"));
+// Nos conectamos a a DB
 require("./database");
 function main() {
     app_1.default.listen(app_1.default.get('port'));

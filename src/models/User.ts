@@ -6,7 +6,7 @@ export interface IUser  extends Document {
     email: string,
     password: string,
     encryptPassword(password: string): Promise<string>,
-    validatePassword(password: string): Promise<boolean>,
+    validatePassword(password: string, userPassword: string): Promise<boolean>,
     _id: string
 };
 
@@ -34,9 +34,9 @@ userSchema.methods.encryptPassword = async (password: string): Promise<string> =
     return bcry.hash(password, salt)
 };
 
-userSchema.methods.validatePassword =  async function(password: string): Promise<boolean> {
-    return await bcry.compare(password, this.password);
+userSchema.methods.validatePassword =  async function(password: string, userPassword: string): Promise<boolean> {
+    return await bcry.compare(password, userPassword);
 
 }
- 
+
 export default model<IUser>('User', userSchema);

@@ -1,10 +1,8 @@
 import { Request, Response } from 'express';
 import User, { IUser} from '../models/User';
-
 import jwt from 'jsonwebtoken';
 
 export const signup = async (req:Request, res:Response) => {
-    console.log(req.body);
 
     // saving new user
     let { username, email, password } = req.body;
@@ -18,22 +16,18 @@ export const signup = async (req:Request, res:Response) => {
     const saveUser = await user.save();
     // create token
     const token: string = jwt.sign({ _id: saveUser._id}, process.env.TOKEN_SECRET || 'holamundo');
-    console.log('saveUser', saveUser);
     res.header('auth-token', token).json(saveUser);
 }
 
 // INICIAT SESION
 export const signin = async (req:Request, res:Response)  => {
-
-    console.log(req.body);
     let { email, password } = req.body;
     let user = await User.findOne({ email: email });
-    console.log('herr', user);
     if(!user) {
        return res.status(400).json('Usuario no encontrado')
     } 
 
-    let correctPassword = await user?.validatePassword(password);
+    let correctPassword = await user?.validatePassword(password, user.password);
     if(!correctPassword) {
         return res.status(400).json('Invalid password');
     }
@@ -48,17 +42,9 @@ export const signin = async (req:Request, res:Response)  => {
 
 // Ver perfil
 export const profile = async (req:Request, res:Response)  => {
-    console.log('header', req.header('auth-token'));
-    // Puedo hacer la validacion aca de auth token pero tocaría hacerlo en cada ruta y no es eficiente. Lo hacemos en libs/verifyToken
-
     const user = await User.findById(req.userId, { password: 0 });
     if(!user) res.status(404).json('No user found');
-
     res.json(user);
-    // res.send('Prueba PROFILE');
 
 }
 
-export function holaMundo() {
-    console.log(arguments);
-}

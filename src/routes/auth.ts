@@ -11,19 +11,3 @@ router.post('/signin', signin);
 router.get('/profile',TokenValidation, profile);
 
 export default router;
-
-
-
-
-
-
-
-
-
-
-
-
-// router.get('/', (req, res) => {
-//     console.log('helllooooooo');
-//     res.send('Helloooo')
-// })

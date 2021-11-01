@@ -2,6 +2,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import app from './app';
+
+// Nos conectamos a a DB
 import './database';
 
 function main() {

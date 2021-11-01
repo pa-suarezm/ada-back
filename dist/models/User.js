@@ -37,9 +37,9 @@ userSchema.methods.encryptPassword = (password) => __awaiter(void 0, void 0, voi
     const salt = yield bcryptjs_1.default.genSalt(10);
     return bcryptjs_1.default.hash(password, salt);
 });
-userSchema.methods.validatePassword = function (password) {
+userSchema.methods.validatePassword = function (password, userPassword) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield bcryptjs_1.default.compare(password, this.password);
+        return yield bcryptjs_1.default.compare(password, userPassword);
     });
 };
 exports.default = mongoose_1.model('User', userSchema);

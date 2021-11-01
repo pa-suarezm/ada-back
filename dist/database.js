@@ -10,7 +10,5 @@ mongoose_1.default.connect('mongodb+srv://tavo0520:tavoracho@cluster0.qdhdu.mong
     useCreateIndex: true
 })
     .then(db => console.log('DB conectada'))
-    .catch(err => console.log(err));
-//   user => tavo05
-// password => tavoracho.
+    .catch(err => console.log(`error al conectar la BD ${err}`, err));
 //# sourceMappingURL=database.js.map

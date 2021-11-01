@@ -6,13 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TokenValidation = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const TokenValidation = (req, res, next) => {
-    console.log('header', req.header('auth-token'));
     let token = req.header('auth-token') || '';
     if (!token)
         res.status(401).json('Access denied');
-    console.log('----LLEGAAAA');
     const payload = jsonwebtoken_1.default.verify(token, process.env.TOKEN_SECRET || 'holamundo');
-    console.log('payload', payload);
     // declaration mergin
     req.userId = payload._id;
     next();
