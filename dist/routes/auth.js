@@ -8,8 +8,4 @@ router.post('/signup', auth_controller_1.signup);
 router.post('/signin', auth_controller_1.signin);
 router.get('/profile', verifyToken_1.TokenValidation, auth_controller_1.profile);
 exports.default = router;
-// router.get('/', (req, res) => {
-//     console.log('helllooooooo');
-//     res.send('Helloooo')
-// })
 //# sourceMappingURL=auth.js.map

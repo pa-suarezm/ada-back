@@ -1,6 +1,8 @@
 import express, { Application} from 'express';
 import morgan from 'morgan';
+//Routes
 import authRoutes from './routes/auth'
+import projectRoutes from './routes/project'
 
 const app: Application = express();
 // settings
@@ -13,6 +15,7 @@ app.use(express.json());
 
 // routes
 app.use('/api/auth', authRoutes);
+app.use('/api/project', projectRoutes);
 
 
 
