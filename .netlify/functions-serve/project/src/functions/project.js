@@ -61957,7 +61957,7 @@ var handler = async (event, context) => {
   } else {
     return {
       statusCode: 404,
-      body: JSON.stringify(event)
+      body: `No se encontr\xF3 la ruta ${path}`
     };
   }
 };

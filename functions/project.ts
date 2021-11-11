@@ -49,7 +49,7 @@ const handler: Handler = async (event, context) => {
   else {
     return({
       statusCode: 404,
-      body: JSON.stringify(event)
+      body: `No se encontró la ruta ${path}`
     })
   }
 };
