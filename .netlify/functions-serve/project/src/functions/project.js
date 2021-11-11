@@ -61918,7 +61918,8 @@ var handler = async (event, context) => {
       console.log(allProjects);
       return {
         statusCode: 200,
-        body: JSON.stringify(allProjects)
+        body: "OK",
+        data: allProjects
       };
     } catch (err) {
       return {
