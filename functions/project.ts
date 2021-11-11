@@ -15,20 +15,20 @@ const handler: Handler = async (event, context) => {
 
       return({
         statusCode: 200,
-        body: JSON.stringify(allProjects)
+        body: allProjects
       });
     }
     catch(err) {
       return({
         statusCode: 500,
-        body: JSON.stringify(err)
+        body: err
       });
     }
   }
   else {
     return({
       statusCode: 404,
-      body: JSON.stringify(event)
+      body: event
     })
   }
 };
