@@ -15,8 +15,10 @@ const handler: Handler = async (event, context) => {
 
       return({
         statusCode: 200,
-        body: "OK",
-        data: allProjects
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
+        body: JSON.stringify(allProjects)
       });
     }
     catch(err) {

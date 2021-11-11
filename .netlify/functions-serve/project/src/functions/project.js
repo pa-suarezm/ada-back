@@ -61918,8 +61918,10 @@ var handler = async (event, context) => {
       console.log(allProjects);
       return {
         statusCode: 200,
-        body: "OK",
-        data: allProjects
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
+        body: JSON.stringify(allProjects)
       };
     } catch (err) {
       return {
