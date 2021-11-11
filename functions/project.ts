@@ -16,9 +16,16 @@ const handler: Handler = async (event, context) => {
     }
     catch(err) {
       return({
-        statusCode: 500
+        statusCode: 500,
+        body: JSON.stringify(err)
       });
     }
+  }
+  else {
+    return({
+      statusCode: 404,
+      body: JSON.stringify(event)
+    })
   }
 };
 
