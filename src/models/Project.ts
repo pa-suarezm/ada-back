@@ -23,6 +23,14 @@ const projectSchema = new Schema({
         type: String,
         require: true,
     },
+    status: {
+      type: String,
+      require: true
+    },
+    description: {
+      type: String,
+      require: true
+    },
     createdAt:  { 
         type: Date, 
         required: false, 

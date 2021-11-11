@@ -61891,6 +61891,14 @@ var projectSchema = new import_mongoose.Schema({
     type: String,
     require: true
   },
+  status: {
+    type: String,
+    require: true
+  },
+  description: {
+    type: String,
+    require: true
+  },
   createdAt: {
     type: Date,
     required: false,
@@ -61915,13 +61923,30 @@ var handler = async (event, context) => {
   if (path.endsWith("getAll") && method == "GET") {
     try {
       let allProjects = await Project_default.find({});
-      console.log(allProjects);
       return {
         statusCode: 200,
         headers: {
           "Access-Control-Allow-Origin": "*"
         },
         body: JSON.stringify(allProjects)
+      };
+    } catch (err) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify(err)
+      };
+    }
+  } else if (path.endsWith("create") && method == "POST") {
+    console.log(event);
+    const body = JSON.parse(event.body);
+    console.log(body);
+    try {
+      let { user, type, status, name, date_delivery, description } = body;
+      let newProject = new Project_default({ user, type, status, name, date_delivery, description });
+      let responseSave = await newProject.save();
+      return {
+        statusCode: 200,
+        body: JSON.stringify(responseSave)
       };
     } catch (err) {
       return {
